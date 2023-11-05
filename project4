@@ -1,0 +1,100 @@
+class Driver:
+    def __init__(self):
+        self.users = {}
+        self.properties = {}
+
+    def main(self):
+        
+         while True:    
+            print("Welcome to your automated Rental Property Calculator, what action would you want to perform? ")
+            print("a. Create a new user")
+            print("b. View your properties")
+            print("c. View your expenses and income")
+            print("d. Calculate your ROI")
+            print("e. Quit")
+
+            choice = input("What's your choice?: ")
+
+            if choice == "a":
+                self.create_user()
+            elif choice == "b":
+                self.view_properties()
+            elif choice == "c":
+                self.view_expenses_and_income()
+            elif choice == "d":
+                self.calculate_roi()
+            elif choice == "e":
+                break
+
+    def create_user(self):
+        name = input("Enter your name: ")
+        self.users[name] = User()
+
+    def view_properties(self):
+        name = input("Enter your name: ")
+        user = self.users[name]
+
+        for property in user.properties:
+            print(property.name)
+
+        property_name = input("Enter the property name: ")
+        property = Property(property_name)
+
+        user.properties[property_name] = property
+
+    def view_expenses_and_income(self):
+        name = input("Enter your name: ")
+        user = self.users[name]
+
+        property_name = input("Enter the property name: ")
+        property = user.properties[property_name]
+
+        print("Expenses:")
+        for expense in property.expenses:
+            print(expense.name, expense.amount)
+
+        print("Income:")
+        for income in property.income:
+            print(income.name, income.amount)
+
+    def calculate_roi(self):
+        name = input("Enter your name: ")
+        user = self.users[name]
+
+        property_name = input("Enter the property name: ")
+        property = user.properties[property_name]
+
+        roi = property.calculate_roi()
+
+        print("The ROI for property {} is {:.2f}%".format(property_name, roi * 100))
+
+        property.roi = roi 
+        
+    def add_new_expenses(self):
+        pass
+class User:
+    def __init__(self):
+        self.name = None
+        self.properties = {}
+
+class Property:
+    def __init__(self, name):
+        self.name = name
+        self.expenses = []
+        self.income = 
+        self.roi = None
+
+    def roi_calc(self):
+        total_expenses = sum([expense.amount for expense in self.expenses])
+        total_income = sum([income.amount for income in self.income])
+
+        roi = (total_income - total_expenses) / total_expenses
+
+        return roi
+
+
+class ROI():
+    def __init__(self):
+        self.users=[]
+        self.current_user = None 
+        
